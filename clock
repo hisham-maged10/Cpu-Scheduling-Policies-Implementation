@@ -1,0 +1,51 @@
+ void clock(int no_of_pages)
+{
+    vector<int> stream = getStream();
+    unordered_map<int,int> frameMap;
+    vector<int> frames;
+    vector<int> clockFrames;
+    for(int i = 0 ; i < no_of_pages ; ++i)
+        clockFrames.push_back(1);
+    bool hit = false;
+    int page;
+    int no_of_faults = 0;
+    int ptr = 0;
+    int idx = 0;
+    for(int i = 0, n = stream.size() ; i < n ; ++i)
+    {
+        page = stream.at(i);
+        hit = frameMap.find(page) != frameMap.end();
+        if(frames.size() == no_of_pages && !hit) {
+            ++no_of_faults;
+            ptr = getClockIdx(clockFrames,ptr);
+            frameMap.erase(frames.at(ptr));
+            frameMap.insert({page,ptr});
+            frames[ptr] = page;
+            ptr = ++ptr % no_of_pages;
+            printf("%02d F   %s\n", page, getStringContent(frames).c_str());
+        }else
+        {
+            if(!hit) {
+                frames.push_back(page);
+                frameMap.insert({page, idx++});
+            }else{
+                int accessed = frameMap[page];
+                clockFrames[accessed] = 1;
+            }
+            printf("%02d     %s\n",page, getStringContent(frames).c_str());
+        }
+    }
+    print_end(no_of_faults);
+}
+
+int getClockIdx(vector<int> clockFrames, int ptr)
+{
+    for(;;)
+    {
+        //cout << "clockFrames[ptr]: " << clockFrames[ptr] << "ptr: " << ptr << endl;
+        if(clockFrames[ptr] == 0)
+            return ptr;
+        clockFrames[ptr++] = 0;
+        ptr %= clockFrames.size();
+    }
+}

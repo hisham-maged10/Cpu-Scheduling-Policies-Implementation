@@ -1,0 +1,3 @@
+/media/dev/Data/term_7/Operating Systems/lab4/Lab 4/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/media/dev/Data/term_7/Operating Systems/lab4/Lab 4/cmake-build-debug/CMakeFiles/Lab_4.dir
+/media/dev/Data/term_7/Operating Systems/lab4/Lab 4/cmake-build-debug/CMakeFiles/edit_cache.dir

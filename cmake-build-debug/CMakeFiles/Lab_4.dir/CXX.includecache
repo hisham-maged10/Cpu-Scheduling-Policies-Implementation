@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/media/dev/Data/term_7/Operating Systems/lab4/Lab 4/lab4.cc
+iostream
+-
+vector
+-
+unordered_map
+-
+algorithm
+-
+
